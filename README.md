@@ -6,6 +6,10 @@ markdown
 [![ShellCheck](https://github.com/elightsys/debian-kopia-backup-stack/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/elightsys/debian-kopia-backup-stack/actions/workflows/shellcheck.yml)
 [![Shell](https://img.shields.io/badge/shell-bash-green.svg)](https://www.gnu.org/software/bash/)
 
+<p align="center">
+  <img src="docs/hero.jpg" alt="Kopia backup stack — restore drill passed" width="720">
+</p>
+
 Production-ready backup template for **Debian 12 + Docker**:
 
 - 🔐 **Kopia** repository (encrypted, deduplicated) with **Web UI**
@@ -88,4 +92,4 @@ See `docs/RECOVERY-ReaR.md` for installing ReaR on the host and scheduling weekl
 - Follow the 3‑2‑1 backup rule: 3 copies, 2 media, 1 offsite
 
 ## License
-MIT — see `LICENSE` 2025 elightsys - Zoltan Vlasits.
+MIT — see `LICENSE`.
