@@ -1,4 +1,4 @@
-````markdown
+markdown
 # Debian Kopia Backup Stack
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
