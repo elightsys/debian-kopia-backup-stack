@@ -1,0 +1,51 @@
+# --- Project data & secrets ---
+# Real secrets live outside the repo; keep only secrets.example/
+secrets/
+*.secret
+*.secrets
+*.key
+*.pem
+.env
+.env.*
+
+# Data, dumps, caches, generated artifacts
+/data/
+**/data/
+**/db_dumps/
+**/kopia-repo/
+**/tmp/
+**/cache/
+*.log
+logs/
+
+# Docker
+**/.docker/
+**/docker-data/
+
+# Editors & OS noise
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# Python/node (if any editors/tools generate these)
+__pycache__/
+*.pyc
+node_modules/
+
+# Archives
+*.tar
+*.gz
+*.zip
+*.7z
+
+# Backup files
+*~
+*.bak
+*.old
+
+# Ensure example secrets remain tracked
+!secrets.example/

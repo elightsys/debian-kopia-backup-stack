@@ -1,0 +1,50 @@
+services:
+  kopia:
+    image: ghcr.io/kopia/kopia:latest
+    container_name: kopia
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    command: >
+      sh -c '
+      kopia repo create filesystem --path=/kopia-repo --password-file=/run/secrets/kopia_repo_password 2>/dev/null || true ;
+      kopia repo connect filesystem --path=/kopia-repo --password-file=/run/secrets/kopia_repo_password &&       kopia server start --address=0.0.0.0:51515 --ui --without-auth=false         --username=$${KOPIA_USERNAME} --password-file=/run/secrets/kopia_ui_password
+      '
+    environment:
+      - TZ=${TZ}
+    secrets:
+      - kopia_repo_password
+      - kopia_ui_password
+    ports:
+      - "51515:51515"
+    volumes:
+      - ../data/kopia-repo:/kopia-repo
+      # snapshot sources (read-only)
+      - ../data/docker:/source/docker:ro
+      - ../data/etc:/source/etc:ro
+      - ../data/var_lib:/source/var_lib:ro
+      - ../data/home:/source/home:ro
+      - ../data/db_dumps:/source/db_dumps:ro
+
+  apprise:
+    image: caronc/apprise:latest
+    container_name: apprise
+    restart: unless-stopped
+    command: ["-b", "0.0.0.0", "-p", "8008"]
+    ports: ["8008:8008"]
+
+  healthchecks:
+    image: ghcr.io/healthchecks/healthchecks:latest
+    container_name: healthchecks
+    environment:
+      - ALLOWED_HOSTS=*
+      - DEBUG=False
+      - SECRET_KEY=change-me
+    ports: ["8000:8000"]
+    restart: unless-stopped
+
+secrets:
+  kopia_repo_password:
+    file: ../secrets/kopia_repo_password.txt
+  kopia_ui_password:
+    file: ../secrets/kopia_ui_password.txt
