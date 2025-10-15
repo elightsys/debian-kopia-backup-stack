@@ -92,4 +92,5 @@ See `docs/RECOVERY-ReaR.md` for installing ReaR on the host and scheduling weekl
 - Follow the 3‑2‑1 backup rule: 3 copies, 2 media, 1 offsite
 
 ## License
-MIT — see `LICENSE`.
+Copyright © 2025 Zoltan Vlasits.
+Licensed under [MIT](./LICENSE).
