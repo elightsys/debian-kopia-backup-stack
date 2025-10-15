@@ -1,4 +1,10 @@
+````markdown
 # Debian Kopia Backup Stack
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Template](https://img.shields.io/badge/repo-template-blue)](https://github.com/elightsys/debian-kopia-backup-stack/generate)
+[![ShellCheck](https://github.com/elightsys/debian-kopia-backup-stack/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/elightsys/debian-kopia-backup-stack/actions/workflows/shellcheck.yml)
+[![Shell](https://img.shields.io/badge/shell-bash-green.svg)](https://www.gnu.org/software/bash/)
 
 Production-ready backup template for **Debian 12 + Docker**:
 
@@ -17,25 +23,32 @@ Production-ready backup template for **Debian 12 + Docker**:
 
 ## Quick start (local test)
 
-1. Clone the repo and prepare secrets:
+1. **Clone and prepare secrets**:
    ```bash
+   git clone https://github.com/elightsys/debian-kopia-backup-stack.git
+   cd debian-kopia-backup-stack
    cp -r secrets.example secrets
-   # edit the two files and set strong passwords
+   # Edit secrets/kopia_repo_password.txt and secrets/kopia_ui_password.txt
    ```
-2. (Optional) Adjust timezone/user in `.env`:
-   ```env
-   TZ=America/New_York
-   KOPIA_USERNAME=admin
+
+2. **Configure environment**:
+   ```bash
+   cp .env.example .env
+   # Edit .env: set TZ (e.g., Europe/Budapest) and KOPIA_USERNAME
    ```
-3. Start services (Kopia, Apprise, Healthchecks):
+
+3. **Start services** (Kopia, Apprise, Healthchecks):
    ```bash
    make up
    ```
-4. Trigger your first backup:
+
+4. **Trigger your first backup**:
    ```bash
    make backup
    ```
-5. Open the **Kopia Web UI** at `http://<server>:51515` → login with `KOPIA_USERNAME` and the password you placed in `secrets/kopia_ui_password.txt`.
+
+5. **Open the Kopia Web UI** at `http://<server>:51515`  
+   → login with your `KOPIA_USERNAME` and the password from `secrets/kopia_ui_password.txt`.
 
 ### What gets snapshotted by default?
 - `./data/docker/`  → put your Docker configs/volumes you want to include
